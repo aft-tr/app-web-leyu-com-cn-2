@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>爱游戏 · 温和入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f3f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+            color: #2c2c2e;
+            line-height: 1.7;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* 卡片式分区 */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9e9ed;
+            padding: 2rem 2.2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        /* hero 开场 */
+        .hero {
+            text-align: center;
+            padding: 2.8rem 1.5rem 2.2rem;
+            background: linear-gradient(145deg, #fafafa, #f0f0f2);
+            border-bottom: 1px solid #e2e2e6;
+        }
+
+        .hero .greeting {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #3a3a3c;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .greeting span {
+            display: inline-block;
+            background: #eaecef;
+            border-radius: 40px;
+            padding: 0.1rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4f4f52;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        .hero .short-line {
+            font-size: 2.1rem;
+            font-weight: 350;
+            color: #1f1f21;
+            line-height: 1.3;
+            margin: 1.2rem 0 1rem;
+        }
+
+        .hero .short-line em {
+            font-style: normal;
+            background: #e5e7eb;
+            padding: 0.1rem 0.5rem;
+            border-radius: 6px;
+            color: #26262a;
+        }
+
+        .hero .subhero {
+            font-size: 1rem;
+            color: #5e5e62;
+            max-width: 600px;
+            margin: 0.8rem auto 0;
+        }
+
+        /* 承接段落 */
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-text a {
+            color: #2c5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, background 0.15s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #2c5f8a;
+            background: #f0f2f5;
+            border-radius: 2px;
+        }
+
+        /* 特点列表 — 简约卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .feature-item {
+            background: #f9f9fb;
+            border-radius: 18px;
+            padding: 1.3rem 1.2rem 1.2rem;
+            border: 1px solid #eaecee;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1c1c1e;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #4a4a4d;
+            line-height: 1.6;
+        }
+
+        .feature-item .num {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 450;
+            color: #7c7c80;
+            background: #ecedef;
+            padding: 0.05rem 0.7rem;
+            border-radius: 30px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 温和说明 / 场景 */
+        .scene-note {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .scene-note .note-block {
+            flex: 1 1 200px;
+            background: #f7f8fa;
+            border-radius: 18px;
+            padding: 1.4rem 1.3rem;
+            border: 1px solid #e5e6ea;
+        }
+
+        .scene-note .note-block h4 {
+            font-weight: 450;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: #2a2a2c;
+        }
+
+        .scene-note .note-block p {
+            font-size: 0.92rem;
+            color: #4b4b4e;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin-top: 0.6rem;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #e2e2e6;
+            padding: 0.9rem 0;
+        }
+
+        .faq-mini details:first-of-type {
+            border-top: 1px solid #e2e2e6;
+        }
+
+        .faq-mini summary {
+            font-weight: 440;
+            cursor: pointer;
+            color: #2c2c2e;
+            font-size: 0.98rem;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-mini summary::after {
+            content: "▾";
+            font-size: 0.9rem;
+            color: #8f8f93;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-mini .faq-answer {
+            padding: 0.7rem 0.3rem 0.3rem;
+            font-size: 0.92rem;
+            color: #515154;
+            line-height: 1.6;
+        }
+
+        /* 结尾 */
+        .closing {
+            text-align: center;
+            padding: 1.8rem 1.5rem 1.2rem;
+            background: #f7f7f9;
+            border-radius: 24px;
+            border: 1px solid #e4e4e8;
+        }
+
+        .closing p {
+            font-size: 0.98rem;
+            color: #424245;
+            margin-bottom: 0.6rem;
+        }
+
+        .closing .small-note {
+            font-size: 0.85rem;
+            color: #74747a;
+            margin-top: 0.6rem;
+        }
+
+        .closing a {
+            color: #2c5f8a;
+            text-decoration: none;
+            border-bottom: 1px solid #bcc5cf;
+            transition: border-color 0.2s;
+        }
+
+        .closing a:hover {
+            border-bottom-color: #1f4a6b;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e4;
+            margin: 1.2rem 0 1.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem 2.2rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+                border-radius: 16px;
+            }
+
+            .hero .short-line {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                gap: 1rem;
+            }
+
+            .scene-note {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .intro-text {
+                column-count: 2;
+                column-gap: 2.2rem;
+            }
+            .intro-text p {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 开场短句 -->
+    <section class="card hero" style="padding-bottom: 2.2rem;">
+        <div class="greeting">
+            午后 · 安稳
+            <span>入口</span>
+        </div>
+        <div class="short-line">
+            打开一个页面，就像 <em>推开门</em> 一样自然。
+        </div>
+        <div class="subhero">
+            不需要刻意寻找，一个安静的地址，常常就是最好的起点。
+        </div>
+    </section>
+
+    <!-- 承接段落：从稳定入口和页面说明的角度 -->
+    <section class="card intro-text">
+        <p>
+            在浏览器的地址栏里输入一串字符，往往意味着一次有目的的出发。而说到游戏内容的集合地，很多人会下意识想起某个熟悉的名字。名字本身并不喧哗，但它背后连接的页面，却可能承载着很多人的日常选择与片刻消遣。我们常常忽略一个稳定入口的价值——它不必时时提醒你它的存在，但当你需要的时候，它总是以同样的姿态等在那里。
+        </p>
+        <p>
+            这也是为什么，一个干净的页面说明有时比花花绿绿的广告更让人安心。不需要夸大其词，也不用编造紧迫感。只要明确地告诉来访者：这里聚合了与游戏相关的资讯、社区动态以及一些有温度的记录。你可以从 <a href="https://zh-portal-i-game.com.cn">爱游戏</a> 这个地址开始，看看它究竟整理了什么，然后决定是否把它加入书签。门始终虚掩着，推开的力气由你决定。
+        </p>
+        <p>
+            如果非要用一句话来概括，那就是：「一个地址，一种陪伴」。它不负责制造欲望，只负责提供选项。页面里的每一行文字、每一个分区，都是为了让你在阅读时感到放松，而不是被催促。我们相信，好的入口不需要用力过猛。
+        </p>
+    </section>
+
+    <!-- 特点列表 -->
+    <section class="card">
+        <h2 style="font-weight: 420; font-size: 1.5rem; color: #1f1f21; margin-bottom: 1.2rem;">▍几个朴素的特点</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="num">01</span>
+                <h3>稳定的结构</h3>
+                <p>页面布局经过梳理，重要分区一目了然。无论是导航还是内容板块，都不需要反复适应。</p>
+            </div>
+            <div class="feature-item">
+                <span class="num">02</span>
+                <h3>温和的节奏</h3>
+                <p>不采用弹窗、闪烁或倒计时等元素。所有信息都平铺在那里，静候你的目光。</p>
+            </div>
+            <div class="feature-item">
+                <span class="num">03</span>
+                <h3>克制的指引</h3>
+                <p>链接和按钮都嵌入在自然的语境中，比如上面那句关于入口的描述，就是一次自然的提及。</p>
+            </div>
+            <div class="feature-item">
+                <span class="num">04</span>
+                <h3>持续更新</h3>
+                <p>内容会随着时间慢慢补充，但不会为了更新而更新。每一个新增的段落都有它存在的理由。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 场景 + 提示（混合卡片） -->
+    <section class="card">
+        <div class="scene-note">
+            <div class="note-block">
+                <h4>📌 日常场景</h4>
+                <p>午休时想找点轻量阅读，或是睡前随便看看游戏动态。一个没有压力的入口，比什么都重要。<br>
+                <span style="font-size:0.88rem;color:#6e6e73;">—— 不需要登录，不需要注册，打开即用。</span></p>
+            </div>
+            <div class="note-block">
+                <h4>📌 小提示</h4>
+                <p>如果你发现页面上某个链接失效或内容有变化，可以尝试刷新或稍后再访。网站维护通常会在低峰时段进行，不会影响日常使用。</p>
+            </div>
+            <div class="note-block">
+                <h4>📌 关于内容</h4>
+                <p>这里不制造焦虑，也不鼓吹某种生活方式。所有的推荐、整理、列表都基于编辑个人的趣味与判断，仅供参考。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section class="card">
+        <h2 style="font-weight: 420; font-size: 1.5rem; color: #1f1f21; margin-bottom: 0.5rem;">▍也许你会好奇</h2>
+        <div class="faq-mini">
+            <details>
+                <summary>“爱游戏” 这个名字有什么特别含义吗？</summary>
+                <div class="faq-answer">没有太复杂的典故。就是单纯地觉得，喜欢游戏是一件很普通也很自然的事，所以用了这样一个直白的名字。它指向 <a href="https://zh-portal-i-game.com.cn" style="color:#2c5f8a;text-decoration: underline; text-underline-offset: 3px;">爱游戏</a> 这个站点，仅此而已。</div>
+            </details>
+            <details>
+                <summary>页面里的链接会经常变动吗？</summary>
+                <div class="faq-answer">核心入口和主要分区很少变动。个别外部链接可能会因为源站调整而失效，如果发现这种情况，欢迎通过页面底部的反馈渠道告知。</div>
+            </details>
+            <details>
+                <summary>我该如何使用这个页面？</summary>
+                <div class="faq-answer">没有固定的使用手册。你可以把它当作一个书架上的小册子，随意翻看，找到感兴趣的部分即可。不需要按顺序阅读。</div>
+            </details>
+        </div>
+    </section>
+
+    <!-- 温和结尾 -->
+    <section class="closing">
+        <p>一个地址，一段叙述，仅此而已。</p>
+        <p>
+            如果你偶然读到此处，并且对这个叫 <a href="https://zh-portal-i-game.com.cn">爱游戏</a> 的地方产生了些许好奇，不妨现在就点开它。
+        </p>
+        <p class="small-note">
+            不需要理由，也不需要准备。页面就在那里，和它第一次出现时一样安静。
+        </p>
+        <hr style="max-width: 200px; margin: 1.2rem auto 0.8rem;">
+        <p class="small-note" style="margin-top: 0.2rem;">
+            —— 写于一个普通的下午 · 入口永远开放
+        </p>
+    </section>
+
+</div>
+</body>
+</html>
